@@ -5,7 +5,21 @@ const methodOverride = require('method-override');
 
 require('./db/db');
 
-// const Destinations = require('./controllers/destinations')
+const destinationsController = require('./controllers/dC');
+
+//middleware
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride('_method'));
+
+//
+app.use('/destinations', destinationsController);
+
+
+
+
+app.get('/', (req, res) => {
+  res.send('hello')
+})
 
 
 
@@ -21,9 +35,6 @@ require('./db/db');
 
 
 
-
-
-
-app.listen('3000', () => {
+app.listen(3000, () => {
   console.log('app is live');
 })
